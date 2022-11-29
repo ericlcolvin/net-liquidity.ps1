@@ -108,11 +108,11 @@ foreach ($elt in $table | Select-Object -Skip 1)
     Write-Host ('{0,20}' -f $elt.rrp.ToString('N0'))           -NoNewline; Write-Host ('{0,20}' -f $rrp_change.ToString('N0')) -ForegroundColor $rrp_color -NoNewline
     Write-Host ('{0,20}' -f $elt.tga.ToString('N0'))           -NoNewline; Write-Host ('{0,20}' -f $tga_change.ToString('N0')) -ForegroundColor $tga_color -NoNewline
     Write-Host ('{0,20}' -f $elt.net_liquidity.ToString('N0')) -NoNewline; Write-Host ('{0,20}' -f $nl_change.ToString('N0'))  -ForegroundColor $nl_color  -NoNewline
-    Write-Host ('{0,10}' -f $elt.spx) -NoNewline;
-    Write-Host ('{0,10}' -f $elt.spx_fv) -NoNewline;
-    Write-Host ('{0,10}' -f $elt.spx_diff)
+    Write-Host ('{0,6}' -f $elt.spx) -NoNewline;
+    Write-Host ('{0,6}' -f $elt.spx_fv) -NoNewline;
+    Write-Host ('{0,6}' -f $elt.spx_diff)
 
     $prev = $elt
 }
 
-Write-Host 'DATE                      WALCL              CHANGE                 RRP              CHANGE                 TGA              CHANGE       NET LIQUIDITY              CHANGE       SPX    SPX FV      DIFF'
+Write-Host 'DATE                      WALCL              CHANGE                 RRP              CHANGE                 TGA              CHANGE       NET LIQUIDITY              CHANGE   SPX    FV  DIFF'
