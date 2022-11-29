@@ -46,10 +46,11 @@ function get-net-liquidity ()
 
 function get-sp500 ()
 {
-    $date = (Get-Date).AddDays(-4*30).ToString('yyyy-MM-dd')
+    $date = (Get-Date).AddDays(-1).ToString('yyyy-MM-dd')
 
     $result = Invoke-RestMethod ('https://fred.stlouisfed.org/graph/fredgraph.csv?id=SP500&cosd={0}' -f $date)
 
+    $result | Select-Object -Last 1
     $result | ConvertFrom-Csv | Where-Object SP500 -NE '.'
 }
 
@@ -58,7 +59,8 @@ function net-liquidity-info ()
     $walcl = get-recent-walcl
     $tga = get-recent-tga
     $reverse_repo = get-recent-reverse-repo
-    $sp = get-sp500
+    $spx = get-sp500
+    $spx = [math]::Round($spx.SP500, 0)
 
     $walcl_dollars        = [decimal] $walcl.WALCL * 1000 * 1000
     $tga_dollars          = [decimal] $tga.open_today_bal * 1000 * 1000
